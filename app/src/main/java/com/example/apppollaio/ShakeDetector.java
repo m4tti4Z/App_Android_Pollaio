@@ -6,7 +6,7 @@ import android.hardware.SensorEventListener;
 
 public class ShakeDetector implements SensorEventListener {
 
-    private static final float SOGLIA_G    = 2.7f;  // G-force minima per rilevare shake
+    private static final float SOGLIA_G    = 4.8f;  // G-force minima per rilevare shake
     private static final long  COOLDOWN_MS = 2000;  // ms tra uno shake e l'altro
 
     public interface OnShakeListener {
