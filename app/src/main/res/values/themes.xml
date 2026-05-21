@@ -1,0 +1,27 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Theme.AppPollaio" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/green_primary</item>
+        <item name="colorPrimaryVariant">@color/green_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/teal_mangime</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/green_dark</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">false</item>
+    </style>
+
+    <style name="Theme.AppPollaio.NoActionBar" parent="Theme.AppPollaio"/>
+
+    <!-- Stile tasti PIN -->
+    <style name="PinButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">80dp</item>
+        <item name="android:layout_height">80dp</item>
+        <item name="android:layout_margin">8dp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">#ffffff</item>
+        <item name="android:textStyle">bold</item>
+        <item name="strokeColor">#40ffffff</item>
+        <item name="cornerRadius">40dp</item>
+        <item name="rippleColor">#30ffffff</item>
+        <item name="backgroundTint">#20ffffff</item>
+    </style>
+</resources>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#1a2e18"
+    android:gravity="center_horizontal">
+
+    <!-- LOGO -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="🐔"
+        android:textSize="60sp"
+        android:layout_marginTop="80dp"/>
+
+    <!-- TITOLO -->
+    <TextView
+        android:id="@+id/tv_pin_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bentornato"
+        android:textColor="#ffffff"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        android:layout_marginTop="16dp"/>
+
+    <TextView
+        android:id="@+id/tv_pin_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inserisci il tuo PIN"
+        android:textColor="#80ffffff"
+        android:textSize="14sp"
+        android:layout_marginTop="6dp"/>
+
+    <!-- DOTS -->
+    <LinearLayout
+        android:id="@+id/dots_row"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="48dp"
+        android:layout_marginBottom="12dp">
+
+        <ImageView android:id="@+id/dot1"
+            android:layout_width="18dp" android:layout_height="18dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/dot_empty"/>
+        <ImageView android:id="@+id/dot2"
+            android:layout_width="18dp" android:layout_height="18dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/dot_empty"/>
+        <ImageView android:id="@+id/dot3"
+            android:layout_width="18dp" android:layout_height="18dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/dot_empty"/>
+        <ImageView android:id="@+id/dot4"
+            android:layout_width="18dp" android:layout_height="18dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/dot_empty"/>
+    </LinearLayout>
+
+    <!-- ERRORE -->
+    <TextView
+        android:id="@+id/tv_pin_error"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="#ff6b6b"
+        android:textSize="13sp"
+        android:layout_marginBottom="32dp"
+        android:visibility="gone"/>
+
+    <!-- TASTIERINO -->
+    <GridLayout
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:columnCount="3"
+        android:rowCount="4"
+        android:layout_marginTop="8dp">
+
+        <!-- Riga 1: 1 2 3 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn1"
+            style="@style/PinButton"
+            android:text="1"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn2"
+            style="@style/PinButton"
+            android:text="2"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn3"
+            style="@style/PinButton"
+            android:text="3"/>
+
+        <!-- Riga 2: 4 5 6 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn4"
+            style="@style/PinButton"
+            android:text="4"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn5"
+            style="@style/PinButton"
+            android:text="5"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn6"
+            style="@style/PinButton"
+            android:text="6"/>
+
+        <!-- Riga 3: 7 8 9 -->
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn7"
+            style="@style/PinButton"
+            android:text="7"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn8"
+            style="@style/PinButton"
+            android:text="8"/>
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn9"
+            style="@style/PinButton"
+            android:text="9"/>
+
+        <!-- Riga 4: vuoto 0 cancella -->
+        <View
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_margin="8dp"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn0"
+            style="@style/PinButton"
+            android:text="0"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_del"
+            style="@style/PinButton"
+            android:text="⌫"
+            android:textSize="20sp"/>
+
+    </GridLayout>
+
+</LinearLayout>

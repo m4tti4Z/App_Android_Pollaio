@@ -1,0 +1,441 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f4f7f3">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="0dp">
+
+        <!-- HEADER -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#1a2e18"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="🐔 Pollaio IoT"
+                        android:textColor="#ffffff"
+                        android:textSize="22sp"
+                        android:textStyle="bold"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginTop="6dp">
+
+                        <View
+                            android:id="@+id/status_dot"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/circle_dot"
+                            android:backgroundTint="#4caf50"
+                            android:layout_marginEnd="6dp"/>
+
+                        <TextView
+                            android:id="@+id/status_txt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Connessione..."
+                            android:textColor="#80ffffff"
+                            android:textSize="12sp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Bottone orari -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/nav_orari"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⏰ Orari"
+                    android:textColor="#ffffff"
+                    app:strokeColor="#80ffffff"
+                    app:cornerRadius="20dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- SHAKE TOAST CARD (nascosta di default) -->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/shake_card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="#26a69a"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="6dp">
+
+            <TextView
+                android:id="@+id/shake_status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="14dp"
+                android:text="📳 Shake rilevato! Erogo mangime..."
+                android:textColor="#ffffff"
+                android:textSize="14sp"
+                android:gravity="center"/>
+        </androidx.cardview.widget.CardView>
+
+        <!-- SEZIONE SENSORI -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sensori in tempo reale"
+            android:textColor="#2d5a27"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"/>
+
+        <!-- GRIGLIA 2x2 CARDS -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:useDefaultMargins="true">
+
+            <!-- TEMPERATURA -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#ffffff">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="🌡️" android:textSize="22sp"/>
+                        <TextView
+                            android:id="@+id/badge_temp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✓ Ottimale"
+                            android:textSize="10sp"
+                            android:textColor="#ffffff"
+                            android:paddingStart="8dp" android:paddingEnd="8dp"
+                            android:paddingTop="3dp" android:paddingBottom="3dp"
+                            android:background="@drawable/badge_bg"
+                            android:backgroundTint="#4caf50"/>
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Temperatura" android:textSize="11sp" android:textColor="#999"
+                        android:layout_marginTop="8dp"/>
+                    <TextView
+                        android:id="@+id/tv_temp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="#1a2e18"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- UMIDITA -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#ffffff">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="💧" android:textSize="22sp"/>
+                        <TextView
+                            android:id="@+id/badge_hum"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✓ Ottimale"
+                            android:textSize="10sp"
+                            android:textColor="#ffffff"
+                            android:paddingStart="8dp" android:paddingEnd="8dp"
+                            android:paddingTop="3dp" android:paddingBottom="3dp"
+                            android:background="@drawable/badge_bg"
+                            android:backgroundTint="#4caf50"/>
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Umidità" android:textSize="11sp" android:textColor="#999"
+                        android:layout_marginTop="8dp"/>
+                    <TextView
+                        android:id="@+id/tv_hum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="#1a2e18"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ACQUA -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#ffffff">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="🪣" android:textSize="22sp"/>
+                        <TextView
+                            android:id="@+id/badge_acqua"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="✓ Alto"
+                            android:textSize="10sp"
+                            android:textColor="#ffffff"
+                            android:paddingStart="8dp" android:paddingEnd="8dp"
+                            android:paddingTop="3dp" android:paddingBottom="3dp"
+                            android:background="@drawable/badge_bg"
+                            android:backgroundTint="#4caf50"/>
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Livello Acqua" android:textSize="11sp" android:textColor="#999"
+                        android:layout_marginTop="8dp"/>
+                    <TextView
+                        android:id="@+id/tv_acqua"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="#1a2e18"/>
+                    <ProgressBar
+                        android:id="@+id/progress_acqua"
+                        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="6dp"
+                        android:layout_marginTop="8dp"
+                        android:max="100"
+                        android:progress="0"
+                        android:progressTint="#26a69a"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- LUCE -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="6dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="3dp"
+                app:cardBackgroundColor="#ffffff">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="☀️" android:textSize="22sp"/>
+                        <TextView
+                            android:id="@+id/badge_luce"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="☀ Attivo"
+                            android:textSize="10sp"
+                            android:textColor="#ffffff"
+                            android:paddingStart="8dp" android:paddingEnd="8dp"
+                            android:paddingTop="3dp" android:paddingBottom="3dp"
+                            android:background="@drawable/badge_bg"
+                            android:backgroundTint="#4caf50"/>
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="Luminosità" android:textSize="11sp" android:textColor="#999"
+                        android:layout_marginTop="8dp"/>
+                    <TextView
+                        android:id="@+id/tv_luce"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="--"
+                        android:textSize="28sp"
+                        android:textStyle="bold"
+                        android:textColor="#1a2e18"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </GridLayout>
+
+        <!-- SEZIONE CONTROLLO MANUALE -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Controllo Manuale"
+            android:textColor="#2d5a27"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:letterSpacing="0.1"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp">
+
+            <!-- BOTTONE LUCE -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_luce"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:layout_marginEnd="6dp"
+                android:text="Accendi Luce"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                app:icon="@drawable/ic_light_on"
+                app:iconTint="#ffffff"
+                app:iconGravity="textStart"
+                app:backgroundTint="#2d5a27"
+                app:cornerRadius="16dp"/>
+
+            <!-- BOTTONE MANGIME -->
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_mangime"
+                android:layout_width="0dp"
+                android:layout_height="64dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:text="Eroga Mangime"
+                android:textSize="13sp"
+                android:textColor="#ffffff"
+                app:icon="@drawable/ic_feed"
+                app:iconTint="#ffffff"
+                app:iconGravity="textStart"
+                app:backgroundTint="#2d5a27"
+                app:cornerRadius="16dp"/>
+        </LinearLayout>
+
+        <!-- SHAKE HINT -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="32dp"
+            app:cardBackgroundColor="#e8f5e9"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="14dp"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="📳"
+                    android:textSize="24sp"
+                    android:layout_marginEnd="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Shake per erogare!"
+                        android:textColor="#2d5a27"
+                        android:textStyle="bold"
+                        android:textSize="13sp"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Scuoti il telefono per aprire la mangiatoia"
+                        android:textColor="#4a7a44"
+                        android:textSize="12sp"
+                        android:layout_marginTop="2dp"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>
