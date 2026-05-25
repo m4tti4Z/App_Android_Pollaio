@@ -13,14 +13,14 @@
 
     <!-- Stile tasti PIN -->
     <style name="PinButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="android:layout_width">80dp</item>
-        <item name="android:layout_height">80dp</item>
-        <item name="android:layout_margin">8dp</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:layout_width">72dp</item>
+        <item name="android:layout_height">72dp</item>
+        <item name="android:layout_margin">6dp</item>
+        <item name="android:textSize">22sp</item>
         <item name="android:textColor">#ffffff</item>
         <item name="android:textStyle">bold</item>
         <item name="strokeColor">#40ffffff</item>
-        <item name="cornerRadius">40dp</item>
+        <item name="cornerRadius">36dp</item>
         <item name="rippleColor">#30ffffff</item>
         <item name="backgroundTint">#20ffffff</item>
     </style>

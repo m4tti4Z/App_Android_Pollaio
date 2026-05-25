@@ -13,7 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.textfield.TextInputEditText;
+import android.widget.EditText;
 
 import org.json.JSONObject;
 
@@ -24,7 +24,7 @@ public class PinActivity extends AppCompatActivity {
     private StringBuilder   pinInput = new StringBuilder();
 
     private TextView          tvTitle, tvSubtitle, tvError;
-    private TextInputEditText etEmail;
+    private EditText           etEmail;
     private ImageView[]       dots = new ImageView[PIN_LENGTH];
 
     @Override

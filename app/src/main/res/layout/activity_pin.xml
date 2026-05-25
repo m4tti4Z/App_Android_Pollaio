@@ -1,106 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#1a2e18"
-    android:gravity="center_horizontal">
+    android:background="#1a2e18">
 
-    <!-- LOGO -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="🐔"
-        android:textSize="60sp"
-        android:layout_marginTop="60dp"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
 
-    <TextView
-        android:id="@+id/tv_pin_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Accedi al Pollaio"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:layout_marginTop="12dp"/>
-
-    <TextView
-        android:id="@+id/tv_pin_subtitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Inserisci email e PIN"
-        android:textColor="#80ffffff"
-        android:textSize="13sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="28dp"/>
-
-    <!-- USERNAME -->
-    <com.google.android.material.textfield.TextInputLayout
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
-        app:boxStrokeColor="#80ffffff"
-        app:hintTextColor="#80ffffff">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/et_username"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"
-            android:textColor="#ffffff"
-            android:textColorHint="#80ffffff"
-            android:inputType="textEmailAddress"
-            android:imeOptions="actionNext"/>
-    </com.google.android.material.textfield.TextInputLayout>
+            android:orientation="vertical"
+            android:gravity="center_horizontal"
+            android:paddingTop="48dp"
+            android:paddingBottom="32dp">
 
-    <!-- DOTS -->
-    <LinearLayout
-        android:id="@+id/dots_row"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginBottom="10dp">
+            <!-- LOGO -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="🐔"
+                android:textSize="56sp"/>
 
-        <ImageView android:id="@+id/dot1" android:layout_width="18dp" android:layout_height="18dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
-        <ImageView android:id="@+id/dot2" android:layout_width="18dp" android:layout_height="18dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
-        <ImageView android:id="@+id/dot3" android:layout_width="18dp" android:layout_height="18dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
-        <ImageView android:id="@+id/dot4" android:layout_width="18dp" android:layout_height="18dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
-    </LinearLayout>
+            <!-- TITOLO -->
+            <TextView
+                android:id="@+id/tv_pin_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Accedi al Pollaio"
+                android:textColor="#ffffff"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"/>
 
-    <!-- ERRORE -->
-    <TextView
-        android:id="@+id/tv_pin_error"
-        android:layout_width="260dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:textColor="#ff6b6b"
-        android:textSize="12sp"
-        android:layout_marginBottom="16dp"
-        android:visibility="gone"/>
+            <TextView
+                android:id="@+id/tv_pin_subtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Inserisci email e PIN"
+                android:textColor="#80ffffff"
+                android:textSize="13sp"
+                android:layout_marginTop="4dp"
+                android:layout_marginBottom="24dp"/>
 
-    <!-- TASTIERINO -->
-    <GridLayout
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:columnCount="3"
-        android:rowCount="4">
+            <!-- EMAIL — rettangolo bianco su sfondo verde -->
+            <EditText
+                android:id="@+id/et_username"
+                android:layout_width="280dp"
+                android:layout_height="52dp"
+                android:layout_marginBottom="20dp"
+                android:hint="Email"
+                android:textColor="#1a2e18"
+                android:textColorHint="#888888"
+                android:textSize="15sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:background="@drawable/input_bg"
+                android:inputType="textEmailAddress"
+                android:imeOptions="actionNext"
+                android:singleLine="true"/>
 
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn1" style="@style/PinButton" android:text="1"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn2" style="@style/PinButton" android:text="2"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn3" style="@style/PinButton" android:text="3"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn4" style="@style/PinButton" android:text="4"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn5" style="@style/PinButton" android:text="5"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn6" style="@style/PinButton" android:text="6"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn7" style="@style/PinButton" android:text="7"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn8" style="@style/PinButton" android:text="8"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn9" style="@style/PinButton" android:text="9"/>
+            <!-- DOTS -->
+            <LinearLayout
+                android:id="@+id/dots_row"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
-        <View android:layout_width="80dp" android:layout_height="80dp" android:layout_margin="8dp"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn0" style="@style/PinButton" android:text="0"/>
-        <com.google.android.material.button.MaterialButton android:id="@+id/btn_del" style="@style/PinButton" android:text="⌫" android:textSize="20sp"/>
-    </GridLayout>
+                <ImageView android:id="@+id/dot1" android:layout_width="16dp" android:layout_height="16dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
+                <ImageView android:id="@+id/dot2" android:layout_width="16dp" android:layout_height="16dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
+                <ImageView android:id="@+id/dot3" android:layout_width="16dp" android:layout_height="16dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
+                <ImageView android:id="@+id/dot4" android:layout_width="16dp" android:layout_height="16dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
+            </LinearLayout>
+
+            <!-- ERRORE -->
+            <TextView
+                android:id="@+id/tv_pin_error"
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#ff6b6b"
+                android:textSize="12sp"
+                android:layout_marginBottom="8dp"
+                android:visibility="gone"/>
+
+            <!-- TASTIERINO — tasti più compatti -->
+            <GridLayout
+                android:layout_width="260dp"
+                android:layout_height="wrap_content"
+                android:columnCount="3"
+                android:rowCount="4"
+                android:layout_marginTop="4dp">
+
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn1" style="@style/PinButton" android:text="1"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn2" style="@style/PinButton" android:text="2"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn3" style="@style/PinButton" android:text="3"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn4" style="@style/PinButton" android:text="4"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn5" style="@style/PinButton" android:text="5"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn6" style="@style/PinButton" android:text="6"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn7" style="@style/PinButton" android:text="7"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn8" style="@style/PinButton" android:text="8"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn9" style="@style/PinButton" android:text="9"/>
+                <View android:layout_width="72dp" android:layout_height="72dp" android:layout_margin="6dp"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn0" style="@style/PinButton" android:text="0"/>
+                <com.google.android.material.button.MaterialButton android:id="@+id/btn_del" style="@style/PinButton" android:text="⌫" android:textSize="18sp"/>
+            </GridLayout>
+
+        </LinearLayout>
+    </ScrollView>
 
     <!-- LOADING OVERLAY -->
     <FrameLayout
@@ -108,7 +120,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#99000000"
-        android:gravity="center"
         android:visibility="gone">
 
         <ProgressBar
@@ -118,4 +129,4 @@
             android:indeterminateTint="#ffffff"/>
     </FrameLayout>
 
-</LinearLayout>
+</FrameLayout>
