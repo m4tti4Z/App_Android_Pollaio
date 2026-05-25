@@ -13,27 +13,47 @@
         android:layout_height="wrap_content"
         android:text="🐔"
         android:textSize="60sp"
-        android:layout_marginTop="80dp"/>
+        android:layout_marginTop="60dp"/>
 
-    <!-- TITOLO -->
     <TextView
         android:id="@+id/tv_pin_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Bentornato"
+        android:text="Accedi al Pollaio"
         android:textColor="#ffffff"
-        android:textSize="26sp"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="12dp"/>
 
     <TextView
         android:id="@+id/tv_pin_subtitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Inserisci il tuo PIN"
+        android:text="Inserisci email e PIN"
         android:textColor="#80ffffff"
-        android:textSize="14sp"
-        android:layout_marginTop="6dp"/>
+        android:textSize="13sp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="28dp"/>
+
+    <!-- USERNAME -->
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
+        app:boxStrokeColor="#80ffffff"
+        app:hintTextColor="#80ffffff">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/et_username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:textColor="#ffffff"
+            android:textColorHint="#80ffffff"
+            android:inputType="textEmailAddress"
+            android:imeOptions="actionNext"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- DOTS -->
     <LinearLayout
@@ -41,36 +61,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="48dp"
-        android:layout_marginBottom="12dp">
+        android:layout_marginBottom="10dp">
 
-        <ImageView android:id="@+id/dot1"
-            android:layout_width="18dp" android:layout_height="18dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/dot_empty"/>
-        <ImageView android:id="@+id/dot2"
-            android:layout_width="18dp" android:layout_height="18dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/dot_empty"/>
-        <ImageView android:id="@+id/dot3"
-            android:layout_width="18dp" android:layout_height="18dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/dot_empty"/>
-        <ImageView android:id="@+id/dot4"
-            android:layout_width="18dp" android:layout_height="18dp"
-            android:layout_margin="10dp"
-            android:src="@drawable/dot_empty"/>
+        <ImageView android:id="@+id/dot1" android:layout_width="18dp" android:layout_height="18dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
+        <ImageView android:id="@+id/dot2" android:layout_width="18dp" android:layout_height="18dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
+        <ImageView android:id="@+id/dot3" android:layout_width="18dp" android:layout_height="18dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
+        <ImageView android:id="@+id/dot4" android:layout_width="18dp" android:layout_height="18dp" android:layout_margin="10dp" android:src="@drawable/dot_empty"/>
     </LinearLayout>
 
     <!-- ERRORE -->
     <TextView
         android:id="@+id/tv_pin_error"
-        android:layout_width="wrap_content"
+        android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:text=""
+        android:gravity="center"
         android:textColor="#ff6b6b"
-        android:textSize="13sp"
-        android:layout_marginBottom="32dp"
+        android:textSize="12sp"
+        android:layout_marginBottom="16dp"
         android:visibility="gone"/>
 
     <!-- TASTIERINO -->
@@ -78,68 +85,37 @@
         android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:columnCount="3"
-        android:rowCount="4"
-        android:layout_marginTop="8dp">
+        android:rowCount="4">
 
-        <!-- Riga 1: 1 2 3 -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn1"
-            style="@style/PinButton"
-            android:text="1"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn2"
-            style="@style/PinButton"
-            android:text="2"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn3"
-            style="@style/PinButton"
-            android:text="3"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn1" style="@style/PinButton" android:text="1"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn2" style="@style/PinButton" android:text="2"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn3" style="@style/PinButton" android:text="3"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn4" style="@style/PinButton" android:text="4"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn5" style="@style/PinButton" android:text="5"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn6" style="@style/PinButton" android:text="6"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn7" style="@style/PinButton" android:text="7"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn8" style="@style/PinButton" android:text="8"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn9" style="@style/PinButton" android:text="9"/>
 
-        <!-- Riga 2: 4 5 6 -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn4"
-            style="@style/PinButton"
-            android:text="4"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn5"
-            style="@style/PinButton"
-            android:text="5"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn6"
-            style="@style/PinButton"
-            android:text="6"/>
-
-        <!-- Riga 3: 7 8 9 -->
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn7"
-            style="@style/PinButton"
-            android:text="7"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn8"
-            style="@style/PinButton"
-            android:text="8"/>
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn9"
-            style="@style/PinButton"
-            android:text="9"/>
-
-        <!-- Riga 4: vuoto 0 cancella -->
-        <View
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_margin="8dp"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn0"
-            style="@style/PinButton"
-            android:text="0"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_del"
-            style="@style/PinButton"
-            android:text="⌫"
-            android:textSize="20sp"/>
-
+        <View android:layout_width="80dp" android:layout_height="80dp" android:layout_margin="8dp"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn0" style="@style/PinButton" android:text="0"/>
+        <com.google.android.material.button.MaterialButton android:id="@+id/btn_del" style="@style/PinButton" android:text="⌫" android:textSize="20sp"/>
     </GridLayout>
+
+    <!-- LOADING OVERLAY -->
+    <FrameLayout
+        android:id="@+id/loading_overlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#99000000"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:indeterminateTint="#ffffff"/>
+    </FrameLayout>
 
 </LinearLayout>
