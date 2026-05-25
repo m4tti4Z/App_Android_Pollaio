@@ -4,23 +4,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.VibrationEffect;
 import android.os.Vibrator;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.textfield.TextInputEditText;
 
+import org.json.JSONObject;
+
 public class PinActivity extends AppCompatActivity {
 
     private static final int PIN_LENGTH = 4;
 
-    private PinManager      pinManager;
     private StringBuilder   pinInput = new StringBuilder();
-    private String          firstPin = null; // usato solo in fase di registrazione
-    private boolean         isRegistering = false;
 
     private TextView          tvTitle, tvSubtitle, tvError;
     private TextInputEditText etEmail;
@@ -31,27 +32,15 @@ public class PinActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pin);
 
-        pinManager    = new PinManager(this);
-        isRegistering = !pinManager.isRegistered();
-
         initViews();
         updateTitle();
-
-        // Pre-compila email se già salvata
-        if (!isRegistering) {
-            etEmail.setText(pinManager.getSavedEmail());
-        }
     }
 
     private void initViews() {
         tvTitle    = findViewById(R.id.tv_pin_title);
         tvSubtitle = findViewById(R.id.tv_pin_subtitle);
         tvError    = findViewById(R.id.tv_pin_error);
-        etEmail    = findViewById(R.id.et_username);
-
-        // Nascondi loading overlay — non serve più
-        View overlay = findViewById(R.id.loading_overlay);
-        if (overlay != null) overlay.setVisibility(View.GONE);
+        etEmail    = findViewById(R.id.et_username); // Questo è il tuo campo di testo per l'email
 
         dots[0] = findViewById(R.id.dot1);
         dots[1] = findViewById(R.id.dot2);
@@ -59,7 +48,7 @@ public class PinActivity extends AppCompatActivity {
         dots[3] = findViewById(R.id.dot4);
 
         int[] btnIds = { R.id.btn0, R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4,
-                         R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9 };
+                R.id.btn5, R.id.btn6, R.id.btn7, R.id.btn8, R.id.btn9 };
         for (int i = 0; i < btnIds.length; i++) {
             final String digit = String.valueOf(i);
             findViewById(btnIds[i]).setOnClickListener(v -> addDigit(digit));
@@ -68,18 +57,8 @@ public class PinActivity extends AppCompatActivity {
     }
 
     private void updateTitle() {
-        if (isRegistering) {
-            if (firstPin == null) {
-                tvTitle.setText("Benvenuto 🐔");
-                tvSubtitle.setText("Inserisci email e scegli un PIN");
-            } else {
-                tvTitle.setText("Conferma PIN");
-                tvSubtitle.setText("Reinserisci il PIN scelto");
-            }
-        } else {
-            tvTitle.setText("Bentornato 🐔");
-            tvSubtitle.setText("Inserisci email e PIN");
-        }
+        tvTitle.setText("Pollaio IoT");
+        tvSubtitle.setText("Inserisci email e PIN");
     }
 
     private void addDigit(String digit) {
@@ -99,14 +78,15 @@ public class PinActivity extends AppCompatActivity {
     private void updateDots() {
         for (int i = 0; i < PIN_LENGTH; i++) {
             dots[i].setImageResource(
-                i < pinInput.length() ? R.drawable.dot_filled : R.drawable.dot_empty);
+                    i < pinInput.length() ? R.drawable.dot_filled : R.drawable.dot_empty);
         }
     }
 
     private void processPin() {
-        String email = etEmail.getText() != null
-                ? etEmail.getText().toString().trim() : "";
+        String email = etEmail.getText() != null ? etEmail.getText().toString().trim() : "";
         String pin = pinInput.toString();
+
+        Log.d("POLLAIO_DEBUG", "Inizio Login -> Email: " + email + " | PIN: " + pin);
 
         if (email.isEmpty()) {
             shakeError("Inserisci la tua email.");
@@ -115,37 +95,45 @@ public class PinActivity extends AppCompatActivity {
             return;
         }
 
-        if (isRegistering) {
-            if (firstPin == null) {
-                // Prima inserzione — chiedi conferma
-                firstPin = pin;
-                pinInput.setLength(0);
-                updateDots();
-                updateTitle();
-                tvError.setVisibility(View.GONE);
-            } else {
-                // Seconda inserzione — confronta
-                if (pin.equals(firstPin)) {
-                    pinManager.save(email, pin);
+        View loadingOverlay = findViewById(R.id.loading_overlay);
+        if (loadingOverlay != null) {
+            loadingOverlay.setVisibility(View.VISIBLE);
+        }
+
+        // Prepara il JSON inserendo SIA l'email SIA il pin
+        JSONObject body = new JSONObject();
+        try {
+            body.put("email", email); // MANDIAMO L'EMAIL AL PHP!
+            body.put("pin", pin);     // MANDIAMO IL PIN IN CHIARO (ci pensa il PHP ad hasharlo)
+        } catch (Exception e) {
+            Log.e("POLLAIO_DEBUG", "Errore creazione JSON: " + e.getMessage());
+        }
+
+        // Chiamata all'API VIP
+        ApiClient.post("/API_login.php", body, new ApiClient.Callback() {
+            @Override
+            public void onSuccess(JSONObject response) {
+                Log.i("POLLAIO_DEBUG", "Login effettuato! Risposta: " + response.toString());
+
+                runOnUiThread(() -> {
+                    if (loadingOverlay != null) loadingOverlay.setVisibility(View.GONE);
+                    Toast.makeText(PinActivity.this, "Accesso eseguito con successo!", Toast.LENGTH_SHORT).show();
                     goToMain();
-                } else {
-                    shakeError("I PIN non coincidono. Riprova.");
-                    firstPin = null;
+                });
+            }
+
+            @Override
+            public void onError(String errorMsg) {
+                Log.e("POLLAIO_DEBUG", "Errore Login: " + errorMsg);
+
+                runOnUiThread(() -> {
+                    if (loadingOverlay != null) loadingOverlay.setVisibility(View.GONE);
+                    shakeError(errorMsg);
                     pinInput.setLength(0);
                     updateDots();
-                    updateTitle();
-                }
+                });
             }
-        } else {
-            // Verifica locale
-            if (pinManager.verify(email, pin)) {
-                goToMain();
-            } else {
-                shakeError("Email o PIN errati. Riprova.");
-                pinInput.setLength(0);
-                updateDots();
-            }
-        }
+        });
     }
 
     private void goToMain() {

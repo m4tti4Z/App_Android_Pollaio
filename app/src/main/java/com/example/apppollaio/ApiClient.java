@@ -15,7 +15,7 @@ public class ApiClient {
 
     private static final String TAG     = "ApiClient";
     // Cambia con l'IP del tuo PC sulla rete locale — es. "http://192.168.1.10"
-    public static final String BASE_URL = "http://100.115.223.39/Pollaio_Progetto_IoT_WebApp";
+    public static final String BASE_URL = "http://100.115.223.39/api_mobile";
 
     public interface Callback {
         void onSuccess(JSONObject response);
@@ -49,10 +49,11 @@ public class ApiClient {
                 reader.close();
 
                 JSONObject json = new JSONObject(sb.toString());
-                if (json.optBoolean("ok", false)) {
+                // NUOVO CODICE:
+                if ("success".equals(json.optString("status"))) {
                     callback.onSuccess(json);
                 } else {
-                    callback.onError(json.optString("errore", "Errore sconosciuto"));
+                    callback.onError(json.optString("message", "Errore sconosciuto"));
                 }
 
             } catch (Exception e) {

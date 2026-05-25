@@ -16,7 +16,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppPollaio">
+        android:theme="@style/Theme.AppPollaio"
+        android:usesCleartextTraffic="true">
 
 <!-- Splash / Entry -->
         <activity
